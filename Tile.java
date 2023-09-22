@@ -15,10 +15,13 @@ public class Tile {
     }
 
     /*
-     * TODO: should check if the given tile t and this tile contain the same color and value
+     * TODO(DONE): should check if the given tile t and this tile contain the same color and value
      * return true if they are matching, false otherwise
      */
     public boolean matchingTiles(Tile t) {
+        if (getValue() == t.getValue() && colorNameToInt() == t.colorNameToInt()) {
+            return true;
+        }
         return false;
     }
 
