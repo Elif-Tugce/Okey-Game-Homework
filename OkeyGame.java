@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class OkeyGame {
 
     Player[] players;
@@ -34,7 +36,7 @@ public class OkeyGame {
      */
     public void distributeTilesToPlayers() {
         int playerIndex = getCurrentPlayerIndex();
-        
+
     }
 
     /*
@@ -81,18 +83,30 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: Pick a tile for the current computer player using one of the following:
+     * TODO (DONE): Pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * You may choose randomly or consider if the discarded tile is useful for
      * the current status. Print whether computer picks from tiles or discarded ones.
      */
     public void pickTileForComputer() {
+        boolean pickedLastDiscarded = false;
+        for (int i = 0; i < players[currentPlayerIndex].playerTiles.length; i++){
+            if (players[getCurrentPlayerIndex()].playerTiles[i].canFormChainWith(lastDiscardedTile) != 0){
+                pickedLastDiscarded = true;
+                getLastDiscardedTile();
+                System.out.println("The computer picked the last discarded tile");
+            }
 
+        }
+            if(!pickedLastDiscarded){
+                getTopTile();
+                System.out.println("The computer picked a tile from the tiles array");
+            }
     }
 
     /*
-     * TODO: Current computer player will discard the least useful tile.
+     * TODO (DONE): Current computer player will discard the least useful tile.
      * For this use the findLongestChainOf method in Player class to calculate
      * the longest chain length per tile of this player,
      * then choose the tile with the lowest chain length and discard it
@@ -100,6 +114,28 @@ public class OkeyGame {
      * known by other players
      */
     public void discardTileForComputer() {
+        Player currentPlayer = players[currentPlayerIndex];
+        int[] chainLengths = new int[currentPlayer.playerTiles.length];
+        int indexOfTileToDiscard = 0;
+        int index = 0;
+
+        for (int i = 0; i < currentPlayer.playerTiles.length; i++){
+            chainLengths[i] = currentPlayer.findLongestChainOf(currentPlayer.playerTiles[i]);
+        }
+
+        for (int i = 0; i < chainLengths.length; i ++){
+            if (chainLengths[i] < chainLengths[i + 1]){
+                indexOfTileToDiscard = i;
+            }
+        }
+
+        lastDiscardedTile = currentPlayer.playerTiles[indexOfTileToDiscard];
+        System.out.printf("The computer has discarded the tile %d", lastDiscardedTile);
+
+        while(index < currentPlayer.playerTiles.length){
+            currentPlayer.playerTiles[indexOfTileToDiscard] = currentPlayer.playerTiles[indexOfTileToDiscard + 1];
+            index++;
+        }
 
     }
 
