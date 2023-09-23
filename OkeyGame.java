@@ -33,16 +33,18 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
     public void distributeTilesToPlayers() {
-
+        int playerIndex = getCurrentPlayerIndex();
+        
     }
 
     /*
-     * TODO: get the last discarded tile for the current player
+     * TODO (DONE): get the last discarded tile for the current player
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        return null;
+        players[getCurrentPlayerIndex()].addTile(lastDiscardedTile);
+        return lastDiscardedTile.toString();
     }
 
     /*
@@ -51,6 +53,7 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
+
         return null;
     }
 
@@ -101,12 +104,12 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: discards the current player's tile at given index
+     * TODO (DONE): discards the current player's tile at given index
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-
+        lastDiscardedTile = players[getCurrentPlayerIndex()].getAndRemoveTile(tileIndex);
     }
 
     public void currentPlayerSortTilesColorFirst() {
