@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class OkeyGame {
@@ -35,8 +36,38 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
     public void distributeTilesToPlayers() {
-        int playerIndex = getCurrentPlayerIndex();
+        for(int i = 104; i > 89; i--){
+            players[0].addTile(tiles[i]);
+            
+            for(int j = 104; j > 0; j--){
+                tiles[j] = tiles[j-1]; //.................................
+            }
+            tiles[0] = null;
+        }
+        
+        for(int i = 104; i > 90; i--){
+            players[1].addTile(tiles[i]);
 
+            for(int j = 104; j > 0; j--){
+                tiles[j] = tiles[j-1]; //.................................
+            }
+        }
+
+        for(int i = 104; i > 90; i--){
+            players[2].addTile(tiles[i]);
+
+            for(int j = 104; j > 0; j--){
+                tiles[j] = tiles[j-1]; //.................................
+            }
+        }
+
+        for(int i = 104; i > 90; i--){
+            players[3].addTile(tiles[i]);
+
+            for(int j = 104; j > 0; j--){
+                tiles[j] = tiles[j-1]; //.................................
+            }
+        }
     }
 
     /*
@@ -50,19 +81,35 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: get the top tile from tiles array for the current player
+     * TODO (Done B): get the top tile from tiles array for the current player
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-
-        return null;
+        players[getCurrentPlayerIndex()].addTile(tiles[tiles.length]);
+        for(int i = 104; i > 0; i--){
+           tiles[i] = tiles[i-1]; //.................................
+        }
+        tiles[0] = null;
+        return tiles[tiles.length].toString();
     }
 
     /*
-     * TODO: should randomly shuffle the tiles array before game starts
+     * TODO (DONE B): should randomly shuffle the tiles array before game starts
      */
     public void shuffleTiles() {
+
+        Random rand = new Random();
+        int randomIndex;
+        int randomIndex2;
+        Tile temp;
+        for(int i = 0; i < 104; i++){
+            randomIndex = rand.nextInt(tiles.length);
+            randomIndex2 = rand.nextInt(tiles.length);
+            temp = tiles[randomIndex];
+            tiles[randomIndex] = tiles[randomIndex2];
+            tiles[randomIndex2] = temp;
+        }
 
     }
 
