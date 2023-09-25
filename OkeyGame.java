@@ -93,7 +93,7 @@ public class OkeyGame {
     }
 
     /*
-     * TODO(DONE): check if game still continues, should return true if current player
+     * TODO: check if game still continues, should return true if current player
      * finished the game. Use calculateLongestChainPerTile method to get the
      * longest chains per tile.
      * To win, you need one of the following cases to be true:
@@ -105,30 +105,6 @@ public class OkeyGame {
      * for this simplified version
      */
     public boolean didGameFinish() {
-        int[] chainLenghts = players[getCurrentPlayerIndex()].calculateLongestChainPerTile();
-        int count3 = 0;
-        int count4 = 0;
-        int count5 = 0;
-        for (int i = 0; i < chainLenghts.length; i++) {
-            if (chainLenghts[i] >= 3) {
-                count3++;
-                if (chainLenghts[i] >= 4) {
-                    count4++;
-                    if (chainLenghts[i] >= 5) {
-                        count5++;
-                    }
-                }
-            }
-        }
-        if (count3 >= 14) {
-            if (count4 >= 8) {
-                return true;
-            }
-            if (count5 >= 5) {
-                return true;
-            }
-        }
-        
         return false;
     }
 
