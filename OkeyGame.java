@@ -7,6 +7,7 @@ public class OkeyGame {
     Tile[] tiles;
 
     Tile lastDiscardedTile;
+    int tileCount = 104;
 
     int currentPlayerIndex = 0;
 
@@ -36,37 +37,41 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
    public void distributeTilesToPlayers() {
-    for(int i = 103; i > 89; i--){
+    for(int i = 0; i < 15; i++){
         players[0].addTile(tiles[i]);
 
-        for(int j = 103; j > 0; j--){
-            tiles[j] = tiles[j-1]; //.................................
+        for(int j = 0; j < tileCount - 1; j++){
+            tiles[j] = tiles[j+1]; //.................................
         }
-        tiles[0] = null;
+
+        tileCount--;
     }
 
-    for(int i = 103; i > 90; i--){
+    for(int i = 0; i < 14; i++){
         players[1].addTile(tiles[i]);
 
-        for(int j = 103; j > 0; j--){
-            tiles[j] = tiles[j-1]; //.................................
+        for(int j = 0; j < tileCount - 1; j++){
+            tiles[j] = tiles[j+1]; //.................................
         }
+        tileCount--;
     }
 
-    for(int i = 103; i > 90; i--){
+    for(int i = 0; i < 14; i++){
         players[2].addTile(tiles[i]);
 
-        for(int j = 103; j > 0; j--){
-            tiles[j] = tiles[j-1]; //.................................
+        for(int j = 0; j < tileCount - 1; j++){
+            tiles[j] = tiles[j+1]; //.................................
         }
+        tileCount--;
     }
 
-    for(int i = 103; i > 90; i--){
+    for(int i = 0; i < 14; i++){
         players[3].addTile(tiles[i]);
 
-        for(int j = 103; j > 0; j--){
-            tiles[j] = tiles[j-1]; //.................................
+        for(int j = 0; j < tileCount - 1; j++){
+            tiles[j] = tiles[j+1]; //.................................
         }
+        tileCount--;
     }
 }
 
@@ -86,12 +91,12 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        players[getCurrentPlayerIndex()].addTile(tiles[tiles.length]);
-        for(int i = 104; i > 0; i--){
-           tiles[i] = tiles[i-1]; //.................................
+        players[getCurrentPlayerIndex()].addTile(tiles[tiles.length - 1]);
+        for(int i = 0; i > tileCount; i++){
+           tiles[i] = tiles[i+1]; //.................................
         }
-        tiles[0] = null;
-        return tiles[tiles.length].toString();
+
+        return tiles[0].toString();
     }
 
     /*
@@ -163,7 +168,7 @@ public class OkeyGame {
     public void pickTileForComputer() {
         boolean pickedLastDiscarded = false;
         for (int i = 0; i < players[currentPlayerIndex].playerTiles.length; i++){
-            if (players[getCurrentPlayerIndex()].playerTiles[i].canFormChainWith(lastDiscardedTile) != 0){
+            if (players[getCurrentPlayerIndex()].playerTiles[i].canFormChainWith(lastDiscardedTile) != 0 && pickedLastDiscarded == false){
                 pickedLastDiscarded = true;
                 getLastDiscardedTile();
                 System.out.println("The computer picked the last discarded tile");
@@ -194,14 +199,14 @@ public class OkeyGame {
             chainLengths[i] = currentPlayer.findLongestChainOf(currentPlayer.playerTiles[i]);
         }
 
-        for (int i = 0; i < chainLengths.length; i ++){
-            if (chainLengths[i] < chainLengths[i + 1]){
+        for (int i = 0; i < chainLengths.length - 1; i ++){
+            if ( chainLengths[i] < chainLengths[i + 1]){
                 indexOfTileToDiscard = i;
             }
         }
 
         lastDiscardedTile = currentPlayer.playerTiles[indexOfTileToDiscard];
-        System.out.printf("The computer has discarded the tile %d", lastDiscardedTile);
+        System.out.println("The computer has discarded the tile" + lastDiscardedTile);
 
         while(index < currentPlayer.playerTiles.length){
             currentPlayer.playerTiles[indexOfTileToDiscard] = currentPlayer.playerTiles[indexOfTileToDiscard + 1];
@@ -216,6 +221,7 @@ public class OkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
+        System.out.println("You have discarded the tile " + players[getCurrentPlayerIndex()].getTiles()[tileIndex]);
         lastDiscardedTile = players[getCurrentPlayerIndex()].getAndRemoveTile(tileIndex);
     }
 

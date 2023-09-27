@@ -116,14 +116,15 @@ public class ApplicationMain {
                     playerChoice = sc.nextInt();
 
                     // TODO(DONE B): make sure the given index is correct, should be 0 <= index <= 14
-                    if(playerChoice >= 0 || playerChoice <= 14){
+                    if(playerChoice >= 0 && playerChoice <= 14){
                         game.discardTile(playerChoice);
+                        
                         game.passTurnToNextPlayer();
-                        isIndexTrue = true;
+                        isIndexTrue = false;
                     }
                     else{
                         System.out.println("There is not such a tile index plese try again!");
-                        isIndexTrue = false;
+                        isIndexTrue = true;
                     }
 
                     }while(isIndexTrue);

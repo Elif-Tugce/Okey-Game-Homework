@@ -61,7 +61,7 @@ public class Player {
 
         int i = tilePosition;
 
-        while(playerTiles[i].canFormChainWith(playerTiles[i+1]) == 1){
+        while( i < numberOfTiles -1 &&  i > -1 && playerTiles[i].canFormChainWith(playerTiles[i+1]) == 1 ){
 
             longestChainColorFirst++;
             i++;
@@ -70,18 +70,20 @@ public class Player {
 
         i = tilePosition;
 
-        while (playerTiles[i].canFormChainWith(playerTiles[i-1] == 1)){
+        while (i < numberOfTiles-1 &&  i > 0 && playerTiles[i].canFormChainWith(playerTiles[i-1]) == 1 ){
             longestChainColorFirst++;
             i--;
 
         }
+        int longestChainValueFirst = 0;
 
         sortTilesValueFirst();
         tilePosition = findPositionOfTile(t);
 
         i = tilePosition;
+
          
-        while(playerTiles[i].canFormChainWith(playerTiles[i+1]) == 2){
+        while(i < numberOfTiles-1 && i > -1 && playerTiles[i].canFormChainWith(playerTiles[i+1]) == 2  ){
 
             longestChainValueFirst++;
             i++;
@@ -90,7 +92,8 @@ public class Player {
 
         i = tilePosition;
 
-        while (playerTiles[i].canFormChainWith(playerTiles[i-1] == 2)){
+
+        while (i < numberOfTiles-1  &&  i >0 && playerTiles[i].canFormChainWith(playerTiles[i-1]) == 2){
             longestChainValueFirst++;
             i--;
 
@@ -99,7 +102,7 @@ public class Player {
                
         
         // TODO: find the longest chain starting from tilePosition going left and right
-        int longestChainValueFirst = 0;
+        
 
 
 
@@ -141,7 +144,7 @@ public class Player {
         if (numberOfTiles < 15) {
             playerTiles[numberOfTiles] = t;
             numberOfTiles++;
-        } else {
+        } else if (numberOfTiles > 15) {
             System.out.println("Maximum tile limit reached. Cannot add more tiles.");
         }
     }
