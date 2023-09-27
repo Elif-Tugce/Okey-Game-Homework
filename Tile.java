@@ -98,7 +98,7 @@ public class Tile {
         return 0;
     }
 
-    public String toString() {
+    public Tile toString() {
         return "" + value + color;
     }
 

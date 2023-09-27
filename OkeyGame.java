@@ -36,18 +36,39 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
    public void distributeTilesToPlayers() {
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
-                for (int j = 0; j < 15; j++) {
-                    players[i].addTile(getTopTile());
-                }
-            } else {
-                for (int j = 0; j < 14; j++) {
-                    players[i].addTile(getTopTile());
-                }
-            }
+    for(int i = 103; i > 89; i--){
+        players[0].addTile(tiles[i]);
+
+        for(int j = 103; j > 0; j--){
+            tiles[j] = tiles[j-1]; //.................................
+        }
+        tiles[0] = null;
+    }
+
+    for(int i = 103; i > 90; i--){
+        players[1].addTile(tiles[i]);
+
+        for(int j = 103; j > 0; j--){
+            tiles[j] = tiles[j-1]; //.................................
         }
     }
+
+    for(int i = 103; i > 90; i--){
+        players[2].addTile(tiles[i]);
+
+        for(int j = 103; j > 0; j--){
+            tiles[j] = tiles[j-1]; //.................................
+        }
+    }
+
+    for(int i = 103; i > 90; i--){
+        players[3].addTile(tiles[i]);
+
+        for(int j = 103; j > 0; j--){
+            tiles[j] = tiles[j-1]; //.................................
+        }
+    }
+}
 
     /*
      * TODO (DONE): get the last discarded tile for the current player
