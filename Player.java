@@ -115,7 +115,21 @@ public class Player {
      * TODO: removes and returns the tile in given index
      */
     public Tile getAndRemoveTile(int index) {
-        return null;
+        if (index < 0 || index >= numberOfTiles) {
+            return null; // Invalid index
+        }
+
+        Tile removedTile = playerTiles[index];
+
+        // Shift tiles to fill the gap
+        for (int i = index; i < numberOfTiles - 1; i++) {
+            playerTiles[i] = playerTiles[i + 1];
+        }
+
+        playerTiles[numberOfTiles - 1] = null; // Clear the last element
+        numberOfTiles--;
+
+        return removedTile;
     }
 
     /*
@@ -123,10 +137,12 @@ public class Player {
      * update numberOfTiles accordingly. Make sure the player does not try to
      * have more than 15 tiles at a time
      */
-    public void addTile(Tile t) {
+   public void addTile(Tile t) {
         if (numberOfTiles < 15) {
-            playerTiles[numberOfTiles] = t; //numberoftiles+1 olmayacak mi ?
+            playerTiles[numberOfTiles] = t;
             numberOfTiles++;
+        } else {
+            System.out.println("Maximum tile limit reached. Cannot add more tiles.");
         }
     }
 
