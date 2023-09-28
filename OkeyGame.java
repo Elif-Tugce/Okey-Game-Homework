@@ -170,7 +170,7 @@ public class OkeyGame {
         for (int i = 0; i < players[currentPlayerIndex].playerTiles.length; i++){
             if (players[getCurrentPlayerIndex()].playerTiles[i].canFormChainWith(lastDiscardedTile) != 0 && pickedLastDiscarded == false){
                 pickedLastDiscarded = true;
-                players[getCurrentPlayerIndex()].addTile(lastDiscardedTile);
+                getLastDiscardedTile();
                 System.out.println("The computer picked the last discarded tile");
             }
 
