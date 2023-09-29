@@ -97,7 +97,6 @@ public class OkeyGame {
         for(int j = 0; j < tileCount; j++){
            tiles[j] = tiles[j+1]; //.................................
         }
-        tiles[tiles.length-1] = null;
 
         return temp.toString();
     }
@@ -158,6 +157,10 @@ public class OkeyGame {
             }
         }
 
+        if (tiles[0] == tiles[tiles.length - 1]){
+            return true;
+        }
+
         return false;
     }
 
@@ -205,22 +208,17 @@ public class OkeyGame {
         indexOfTileToDiscard = 0;
 
         for (int i = 0; i < chainLengths.length - 1; i ++){
-            if ( chainLengths[i] < chainLengths[indexOfTileToDiscard]){  //BURDA DEĞİŞİKLİK YAPTIM i+1 yanlış
+            if ( chainLengths[i] < chainLengths[indexOfTileToDiscard]){ 
                 indexOfTileToDiscard = i;
             }
         }
 
         lastDiscardedTile = currentPlayer.playerTiles[indexOfTileToDiscard];
 
-        currentPlayer.getAndRemoveTile(indexOfTileToDiscard); //???????
+        currentPlayer.getAndRemoveTile(indexOfTileToDiscard); 
 
         System.out.println("The computer has discarded the tile " + lastDiscardedTile);
 
-
-        //while(index < currentPlayer.playerTiles.length){ //Burda değişiklikler yaptım
-          //  currentPlayer.playerTiles[indexOfTileToDiscard] = currentPlayer.playerTiles[indexOfTileToDiscard + 1];
-            //index++;
-        //}
 
     }
 

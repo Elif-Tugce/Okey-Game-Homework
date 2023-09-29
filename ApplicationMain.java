@@ -129,7 +129,10 @@ public class ApplicationMain {
 
                     }while(isIndexTrue);
                 }
-                else{
+                else if(!gameContinues && game.tiles[0] == game.tiles[game.tiles.length - 1]){
+                    System.out.println("You run out of tales. The game has finished.");
+                }
+                else if (!gameContinues){
                     // if we finish the hand we win
                     System.out.println("Congratulations, you win!");
                 }
@@ -150,7 +153,10 @@ public class ApplicationMain {
                     game.discardTileForComputer();
                     game.passTurnToNextPlayer();
                 }
-                else{
+                else if(!gameContinues && game.tiles[0] == game.tiles[game.tiles.length - 1]){
+                    System.out.println("You run out of tales. The game has finished.");
+                }
+                else if (!gameContinues){
                     // current computer character wins
                     System.out.println(game.getCurrentPlayerName() + " wins.");
                 }
