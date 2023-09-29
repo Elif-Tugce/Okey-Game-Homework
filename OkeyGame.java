@@ -202,19 +202,25 @@ public class OkeyGame {
             chainLengths[i] = currentPlayer.findLongestChainOf(currentPlayer.playerTiles[i]);
         }
 
+        indexOfTileToDiscard = 0;
+
         for (int i = 0; i < chainLengths.length - 1; i ++){
-            if ( chainLengths[i] < chainLengths[i + 1]){
+            if ( chainLengths[i] < chainLengths[indexOfTileToDiscard]){  //BURDA DEĞİŞİKLİK YAPTIM i+1 yanlış
                 indexOfTileToDiscard = i;
             }
         }
 
         lastDiscardedTile = currentPlayer.playerTiles[indexOfTileToDiscard];
+
+        currentPlayer.getAndRemoveTile(indexOfTileToDiscard); //???????
+
         System.out.println("The computer has discarded the tile " + lastDiscardedTile);
 
-        while(index < currentPlayer.playerTiles.length){
-            currentPlayer.playerTiles[indexOfTileToDiscard] = currentPlayer.playerTiles[indexOfTileToDiscard + 1];
-            index++;
-        }
+
+        //while(index < currentPlayer.playerTiles.length){ //Burda değişiklikler yaptım
+          //  currentPlayer.playerTiles[indexOfTileToDiscard] = currentPlayer.playerTiles[indexOfTileToDiscard + 1];
+            //index++;
+        //}
 
     }
 
