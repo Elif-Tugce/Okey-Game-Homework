@@ -141,7 +141,7 @@ public class ApplicationMain {
                 }
 
                 // computer picks a tile from tile stack or other player's discard
-                game.pickTileForComputer();
+                 game.pickTileForComputer();
 
                 gameContinues = !game.didGameFinish();
 
