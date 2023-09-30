@@ -38,7 +38,7 @@ public class OkeyGame {
      */
    public void distributeTilesToPlayers() {
     for(int i = 0; i < 15; i++){
-        players[0].addTile(tiles[i]);
+        players[0].addTile(tiles[0]);
 
         for(int j = 0; j < tileCount - 1; j++){
             tiles[j] = tiles[j+1]; //.................................
@@ -48,7 +48,7 @@ public class OkeyGame {
     }
 
     for(int i = 0; i < 14; i++){
-        players[1].addTile(tiles[i]);
+        players[1].addTile(tiles[0]);
 
         for(int j = 0; j < tileCount - 1; j++){
             tiles[j] = tiles[j+1]; //.................................
@@ -57,7 +57,7 @@ public class OkeyGame {
     }
 
     for(int i = 0; i < 14; i++){
-        players[2].addTile(tiles[i]);
+        players[2].addTile(tiles[0]);
 
         for(int j = 0; j < tileCount - 1; j++){
             tiles[j] = tiles[j+1]; //.................................
@@ -66,7 +66,7 @@ public class OkeyGame {
     }
 
     for(int i = 0; i < 14; i++){
-        players[3].addTile(tiles[i]);
+        players[3].addTile(tiles[0]);
 
         for(int j = 0; j < tileCount - 1; j++){
             tiles[j] = tiles[j+1]; //.................................
