@@ -37,43 +37,26 @@ public class OkeyGame {
      * this method assumes the tiles are already sorted
      */
    public void distributeTilesToPlayers() {
-    for(int i = 0; i < 15; i++){
-        players[0].addTile(tiles[0]);
-
-        for(int j = 0; j < tileCount - 1; j++){
-            tiles[j] = tiles[j+1]; //.................................
-        }
-
-        tileCount--;
-    }
-
-    for(int i = 0; i < 14; i++){
-        players[1].addTile(tiles[0]);
-
-        for(int j = 0; j < tileCount - 1; j++){
-            tiles[j] = tiles[j+1]; //.................................
-        }
-        tileCount--;
-    }
-
-    for(int i = 0; i < 14; i++){
-        players[2].addTile(tiles[0]);
-
-        for(int j = 0; j < tileCount - 1; j++){
-            tiles[j] = tiles[j+1]; //.................................
-        }
-        tileCount--;
-    }
-
-    for(int i = 0; i < 14; i++){
-        players[3].addTile(tiles[0]);
-
-        for(int j = 0; j < tileCount - 1; j++){
-            tiles[j] = tiles[j+1]; //.................................
-        }
-        tileCount--;
-    }
-}
+       for (int i = 0; i < 4; i++) {
+           if (i == 0) {
+               for (int j = 0; j < 15; j++) {
+                   players[i].addTile(tiles[0]);
+                   for (int k = 0; k < tileCount - 1; k++) {
+                       tiles[k] = tiles[k + 1]; //.................................
+                   }
+                   tileCount--;
+               }
+           } else {
+               for (int j = 0; j < 14; j++) {
+                   players[i].addTile(tiles[0]);
+                   for (int k = 0; k < tileCount - 1; k++) {
+                       tiles[k] = tiles[k + 1]; //.................................
+                   }
+                   tileCount--;
+               }
+           }
+       }
+   }
 
     /*
      * TODO (DONE): get the last discarded tile for the current player
@@ -105,19 +88,14 @@ public class OkeyGame {
      * TODO (DONE B): should randomly shuffle the tiles array before game starts
      */
     public void shuffleTiles() {
-
         Random rand = new Random();
-        int randomIndex;
-        int randomIndex2;
-        Tile temp;
-        for(int i = 0; i < 104; i++){
-            randomIndex = rand.nextInt(tiles.length);
-            randomIndex2 = rand.nextInt(tiles.length);
-            temp = tiles[randomIndex];
-            tiles[randomIndex] = tiles[randomIndex2];
-            tiles[randomIndex2] = temp;
+        for (int i = tiles.length - 1; i > 0; i--) {
+            int j = rand.nextInt(i + 1);
+            // Swap tiles[i] and tiles[j]
+            Tile temp = tiles[i];
+            tiles[i] = tiles[j];
+            tiles[j] = temp;
         }
-
     }
 
     /*
@@ -177,13 +155,12 @@ public class OkeyGame {
             if (players[getCurrentPlayerIndex()].playerTiles[i].canFormChainWith(lastDiscardedTile) != 0 && pickedLastDiscarded == false){
                 pickedLastDiscarded = true;
                 getLastDiscardedTile();
-                System.out.println("The computer picked the last discarded tile");
-            }
+                System.out.println(getCurrentPlayerName() + " picked from discarded");            }
 
         }
             if(!pickedLastDiscarded){
                 getTopTile();
-                System.out.println("The computer picked a tile from the tiles array");
+                System.out.println(getCurrentPlayerName() + " picked a new tile");
             }
     }
 
@@ -217,8 +194,7 @@ public class OkeyGame {
 
         currentPlayer.getAndRemoveTile(indexOfTileToDiscard); 
 
-        System.out.println("The computer has discarded the tile " + lastDiscardedTile);
-
+        System.out.println(getCurrentPlayerName() + " has discarded the tile " + lastDiscardedTile);
 
     }
 
