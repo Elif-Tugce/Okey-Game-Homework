@@ -57,7 +57,7 @@ public class ApplicationMain {
                 System.out.print("Your choice: ");
                 playerChoice = sc.nextInt();
 
-                // sorting does not pass turn, so it is in a loop until user choses some other value
+                // sorting does not pass turn, so it is in a loop until user chooses some other value
                 while(playerChoice == 1 || playerChoice == 2) {
                     
                     if(playerChoice == 1) {
@@ -123,7 +123,7 @@ public class ApplicationMain {
                         isIndexTrue = false;
                     }
                     else{
-                        System.out.println("There is not such a tile index plese try again!");
+                        System.out.println("There is not such a tile index please try again!");
                         isIndexTrue = true;
                     }
 
